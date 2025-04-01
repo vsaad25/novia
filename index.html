@@ -5,7 +5,7 @@
   <title>¿Quieres ser mi novia?</title>
   <style>
     body {
-      background: url('https://raw.githubusercontent.com/ariwebdev/images/main/hearts-background.jpg') no-repeat center center fixed;
+      background: url('https://i.ibb.co/3SWyBkp/hearts-bg.jpg') no-repeat center center fixed;
       background-size: cover;
       font-family: 'Segoe UI', sans-serif;
       color: white;
@@ -35,7 +35,6 @@
       border-radius: 10px;
       cursor: pointer;
       transition: 0.3s;
-      position: relative;
     }
 
     button:hover {
@@ -86,7 +85,6 @@
 
   <div id="heart">❤️</div>
 
-  <!-- Música de fondo -->
   <audio id="bgMusic" loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_c127542020.mp3?filename=romantic-background-music-122029.mp3" type="audio/mpeg">
     Tu navegador no soporta el audio.
@@ -96,20 +94,17 @@
     const noBtn = document.getElementById('noBtn');
     const bgMusic = document.getElementById('bgMusic');
 
-    // Inicia la música después de un clic
     document.body.addEventListener('click', () => {
       bgMusic.play().catch(() => {
-        console.log("Esperando interacción del usuario para reproducir música.");
+        console.log("Autoplay bloqueado hasta clic del usuario");
       });
     });
 
     noBtn.addEventListener('mouseover', () => {
       const maxX = window.innerWidth - noBtn.offsetWidth;
       const maxY = window.innerHeight - noBtn.offsetHeight;
-
       const randX = Math.floor(Math.random() * maxX);
       const randY = Math.floor(Math.random() * maxY);
-
       noBtn.style.left = randX + 'px';
       noBtn.style.top = randY + 'px';
     });
