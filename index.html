@@ -5,7 +5,7 @@
   <title>¿Quieres ser mi novia?</title>
   <style>
     body {
-      background: url('https://raw.githubusercontent.com/ariwebdev/images/main/heart-background.jpg') no-repeat center center fixed;
+      background: url('https://raw.githubusercontent.com/ariwebdev/images/main/hearts-background.jpg') no-repeat center center fixed;
       background-size: cover;
       font-family: 'Segoe UI', sans-serif;
       color: white;
@@ -86,7 +86,7 @@
 
   <div id="heart">❤️</div>
 
-  <!-- Música de fondo con interacción -->
+  <!-- Música de fondo -->
   <audio id="bgMusic" loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_c127542020.mp3?filename=romantic-background-music-122029.mp3" type="audio/mpeg">
     Tu navegador no soporta el audio.
@@ -96,10 +96,10 @@
     const noBtn = document.getElementById('noBtn');
     const bgMusic = document.getElementById('bgMusic');
 
-    // Intentar reproducir la música al dar clic en cualquier parte
+    // Inicia la música después de un clic
     document.body.addEventListener('click', () => {
-      bgMusic.play().catch(e => {
-        console.log("Autoplay bloqueado hasta interacción del usuario");
+      bgMusic.play().catch(() => {
+        console.log("Esperando interacción del usuario para reproducir música.");
       });
     });
 
