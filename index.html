@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>¿Quieres ser mi novia?</title>
+  <style>
+    body {
+      background: #1a1a2e url('https://raw.githubusercontent.com/ariwebdev/images/main/blue-flowers-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      text-align: center;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3em;
+      text-shadow: 2px 2px 4px #000;
+      margin-top: 15%;
+    }
+
+    .buttons {
+      margin-top: 30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    button {
+      background-color: rgba(255, 255, 255, 0.85);
+      border: none;
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 1.2em;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      position: relative;
+    }
+
+    button:hover {
+      background-color: #ffccff;
+    }
+
+    #noBtn {
+      position: absolute;
+    }
+
+    #heart {
+      display: none;
+      font-size: 100px;
+      color: red;
+      animation: pulse 1s infinite;
+      margin-top: 40px;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #ff69b4;
+      animation: fall 3s linear infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>¿Quieres ser mi novia?</h1>
+
+  <div class="buttons">
+    <button onclick="celebrar()">Sí</button>
+    <button id="noBtn" onclick="alert('Intenta de nuevo jeje')">No</button>
+  </div>
+
+  <div id="heart">❤️</div>
+
+  <audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+    Tu navegador no soporta el audio.
+  </audio>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+
+    noBtn.addEventListener('mouseover', () => {
+      const maxX = window.innerWidth - noBtn.offsetWidth;
+      const maxY = window.innerHeight - noBtn.offsetHeight;
+
+      const randX = Math.floor(Math.random() * maxX);
+      const randY = Math.floor(Math.random() * maxY);
+
+      noBtn.style.left = randX + 'px';
+      noBtn.style.top = randY + 'px';
+    });
+
+    function celebrar() {
+      alert("¡Felicidades!");
+      document.getElementById("heart").style.display = "block";
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.backgroundColor = randomColor();
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 5000);
+      }
+    }
+
+    function randomColor() {
+      const colors = ['#ff69b4', '#ffd700', '#add8e6', '#ffb6c1', '#98fb98'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+  </script>
+</body>
+</html>
