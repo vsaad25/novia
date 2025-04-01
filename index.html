@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>¿Quieres ser mi novia?</title>
   <style>
     body {
@@ -12,29 +13,31 @@
       text-align: center;
       margin: 0;
       overflow: hidden;
+      padding: 0 1rem;
     }
 
     h1 {
-      font-size: 3em;
+      font-size: 8vw;
       text-shadow: 2px 2px 4px #000;
-      margin-top: 15%;
+      margin-top: 20vh;
     }
 
     .buttons {
-      margin-top: 30px;
+      margin-top: 5vh;
       position: relative;
       z-index: 2;
     }
 
     button {
-      background-color: rgba(255, 255, 255, 0.85);
+      background-color: rgba(255, 255, 255, 0.9);
       border: none;
-      padding: 15px 30px;
-      margin: 10px;
-      font-size: 1.2em;
-      border-radius: 10px;
+      padding: 1rem 2rem;
+      margin: 1rem;
+      font-size: 5vw;
+      border-radius: 15px;
       cursor: pointer;
       transition: 0.3s;
+      max-width: 80vw;
     }
 
     button:hover {
@@ -47,10 +50,10 @@
 
     #heart {
       display: none;
-      font-size: 100px;
+      font-size: 20vw;
       color: red;
       animation: pulse 1s infinite;
-      margin-top: 40px;
+      margin-top: 2rem;
     }
 
     @keyframes pulse {
@@ -71,6 +74,20 @@
       to {
         transform: translateY(100vh) rotate(360deg);
         opacity: 0;
+      }
+    }
+
+    @media (min-width: 600px) {
+      h1 {
+        font-size: 3em;
+      }
+
+      button {
+        font-size: 1.5em;
+      }
+
+      #heart {
+        font-size: 100px;
       }
     }
   </style>
@@ -96,18 +113,21 @@
 
     document.body.addEventListener('click', () => {
       bgMusic.play().catch(() => {
-        console.log("Autoplay bloqueado hasta clic del usuario");
+        console.log("Esperando clic del usuario para reproducir música.");
       });
     });
 
-    noBtn.addEventListener('mouseover', () => {
+    noBtn.addEventListener('touchstart', moverNo);
+    noBtn.addEventListener('mouseover', moverNo);
+
+    function moverNo() {
       const maxX = window.innerWidth - noBtn.offsetWidth;
       const maxY = window.innerHeight - noBtn.offsetHeight;
-      const randX = Math.floor(Math.random() * maxX);
-      const randY = Math.floor(Math.random() * maxY);
+      const randX = Math.random() * maxX;
+      const randY = Math.random() * maxY;
       noBtn.style.left = randX + 'px';
       noBtn.style.top = randY + 'px';
-    });
+    }
 
     function celebrar() {
       alert("¡Felicidades!");
