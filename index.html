@@ -5,7 +5,7 @@
   <title>¿Quieres ser mi novia?</title>
   <style>
     body {
-      background: #1a1a2e url('https://raw.githubusercontent.com/ariwebdev/images/main/blue-flowers-bg.jpg') no-repeat center center fixed;
+      background: url('https://raw.githubusercontent.com/ariwebdev/images/main/heart-background.jpg') no-repeat center center fixed;
       background-size: cover;
       font-family: 'Segoe UI', sans-serif;
       color: white;
@@ -86,13 +86,22 @@
 
   <div id="heart">❤️</div>
 
-  <audio autoplay loop>
-    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+  <!-- Música de fondo con interacción -->
+  <audio id="bgMusic" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_c127542020.mp3?filename=romantic-background-music-122029.mp3" type="audio/mpeg">
     Tu navegador no soporta el audio.
   </audio>
 
   <script>
     const noBtn = document.getElementById('noBtn');
+    const bgMusic = document.getElementById('bgMusic');
+
+    // Intentar reproducir la música al dar clic en cualquier parte
+    document.body.addEventListener('click', () => {
+      bgMusic.play().catch(e => {
+        console.log("Autoplay bloqueado hasta interacción del usuario");
+      });
+    });
 
     noBtn.addEventListener('mouseover', () => {
       const maxX = window.innerWidth - noBtn.offsetWidth;
