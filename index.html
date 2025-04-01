@@ -5,15 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>¿Quieres ser mi novia?</title>
   <style>
-    body {
-      background: ('fondo.jpg') repeat center center fixed;
-      background-size: 400px;
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
+    }
+
+    .fondo {
+      background: url('fondo.jpg') repeat center center;
+      background-size: 400px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .contenido {
       color: white;
       text-align: center;
-      margin: 0;
-      overflow: hidden;
-      padding: 0 1rem;
+      padding: 2rem 1rem;
     }
 
     h1 {
@@ -25,7 +39,6 @@
     .buttons {
       margin-top: 5vh;
       position: relative;
-      z-index: 2;
     }
 
     button {
@@ -93,29 +106,21 @@
   </style>
 </head>
 <body>
-  <h1>¿Quieres ser mi novia?</h1>
+  <div class="fondo"></div>
 
-  <div class="buttons">
-    <button onclick="celebrar()">Sí</button>
-    <button id="noBtn" onclick="alert('Intenta de nuevo jeje')">No</button>
+  <div class="contenido">
+    <h1>¿Quieres ser mi novia?</h1>
+
+    <div class="buttons">
+      <button onclick="celebrar()">Sí</button>
+      <button id="noBtn" onclick="alert('Intenta de nuevo jeje')">No</button>
+    </div>
+
+    <div id="heart">❤️</div>
   </div>
-
-  <div id="heart">❤️</div>
-
-  <audio id="bgMusic" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_c127542020.mp3?filename=romantic-background-music-122029.mp3" type="audio/mpeg">
-    Tu navegador no soporta el audio.
-  </audio>
 
   <script>
     const noBtn = document.getElementById('noBtn');
-    const bgMusic = document.getElementById('bgMusic');
-
-    document.body.addEventListener('click', () => {
-      bgMusic.play().catch(() => {
-        console.log("Esperando clic del usuario para reproducir música.");
-      });
-    });
 
     noBtn.addEventListener('touchstart', moverNo);
     noBtn.addEventListener('mouseover', moverNo);
